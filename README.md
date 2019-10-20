@@ -15,20 +15,20 @@ with that letter. However, if the user doesn't guess correctly the placeholder w
 ## Program Specifications  
 Some methods that you should consider creating with your application, at minimum:
 
-Main Method
-This will be the first method that runs in the program. Consider calling the UserInterface() method from this method.
-UserInterface
-Asks the user what action they should take
-ViewWords
-Reads the words in from the external file and outputs them to the console
-RemoveWords
-Gives the user the ability to remove one of the words in the list
-AddWord
-Add a new word to the list
-ExitGame
-End the game
-StartGame*
-Actual game logic of guessing a letter of the mystery word 
+Main Method  
+This will be the first method that runs in the program. Consider calling the UserInterface() method from this method.  
+UserInterface  
+Asks the user what action they should take  
+ViewWords  
+Reads the words in from the external file and outputs them to the console  
+RemoveWords  
+Gives the user the ability to remove one of the words in the list  
+AddWord  
+Add a new word to the list  
+ExitGame  
+End the game  
+StartGame*  
+Actual game logic of guessing a letter of the mystery word  
 
 ---
 
