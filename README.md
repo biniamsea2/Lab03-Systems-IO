@@ -7,7 +7,7 @@ LAB 03: System I.O
 ----
 
 ## Description
-This is a C# console application that creates a ìWord Guess Gameî. The main idea of the game is to allow the user to guess who the basketball player is. 
+This is a C# console application that creates a ‚ÄúWord Guess Game‚Äù. The main idea of the game is to allow the user to guess who the basketball player is. 
 Each round will randomly select a basketball player from the list. It is the users job to guess that player by entering in their first name one letter 
 at a time. As the user guesses the name the application will display all their guesses. If the user guesses a letter correctly it will replace the placeholder
 with that letter. However, if the user doesn't guess correctly the placeholder will remain unchanged and the user will be notified that their guess was incorrect.
@@ -53,14 +53,15 @@ Then select and open ```Lab03SystemIO.sln```
 ### Visuals
 
 #### Application Start
-![Image 1](https://github.com/biniamsea2/Lab02BankApp/blob/master/screenshots/Screenshot%20(24).png)
-#### Deposit
-![Image 1](https://github.com/biniamsea2/Lab02BankApp/blob/master/screenshots/Screenshot%20(25).png)
-#### Withdraw
-![Image 1](https://github.com/biniamsea2/Lab02BankApp/blob/master/screenshots/Screenshot%20(26).png)
-![Image 1](https://github.com/biniamsea2/Lab02BankApp/blob/master/screenshots/Screenshot%20(26).png)
-![Image 1](https://github.com/biniamsea2/Lab02BankApp/blob/master/screenshots/Screenshot%20(26).png)
-
+![Image 1](https://github.com/biniamsea2/Lab03-Systems-IO/blob/master/Screenshots/mainMenu.png)
+#### Game in Action
+![Image 1](https://github.com/biniamsea2/Lab03-Systems-IO/blob/master/Screenshots/playing%20game.png)
+#### Won Game
+![Image 1](https://github.com/biniamsea2/Lab03-Systems-IO/blob/master/Screenshots/game%20won.png)
+#### View Names in the List
+![Image 1](https://github.com/biniamsea2/Lab03-Systems-IO/blob/master/Screenshots/view%20list%20of%20names.png)
+#### Add Name to the List
+![Image 1](https://github.com/biniamsea2/Lab03-Systems-IO/blob/master/Screenshots/add%20to%20list.png)
 ---
 
 ### Change Log
