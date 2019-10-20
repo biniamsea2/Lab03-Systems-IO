@@ -1,19 +1,20 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 
 namespace Lab03SystemsIO
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
             bool displayMenu = true;
             while (displayMenu)
             {
-                displayMenu = MainMenu();
+                displayMenu = UserInterface();
             }
         }
-        private static bool MainMenu()
+        public static bool UserInterface()
         {
             Console.Clear();
             Console.WriteLine(" Welcome To Biniam's Basketball Guessing Game \n");
@@ -24,7 +25,7 @@ namespace Lab03SystemsIO
             Console.WriteLine(" 4) Remove a name from the list\n");
             Console.WriteLine(" 5) EXIT ");
             string userInput = Console.ReadLine();
-            
+
             if (userInput == "1")
             {
                 playGame();
@@ -38,12 +39,14 @@ namespace Lab03SystemsIO
             else if (userInput == "3")
             {
                 addName("../../../myFile.txt");
-            return true;
+                return true;
             }
             else if (userInput == "4")
             {
-                removeName();
-                    return true;
+                Console.WriteLine("Which name would you like to remove?");
+                string removedName = Console.ReadLine();
+                removeName("../../../myFile.txt", removedName);
+                return true;
             }
             else if (userInput == "5")
             {
@@ -59,41 +62,104 @@ namespace Lab03SystemsIO
 
 
         /// <summary>
-        /// method allows user to play game, also calls the exit method to allow user to exit game,
-        /// and the play again method allows user to play the game again.
+        /// method randomly selects a name from the file, then gives placeholders the length of the random name selected.
+        /// if user enters the correct character that character will replace the placeholder with that correct input. If user input 
+        /// does not match the random name selected nothing changes.
         /// </summary>
-        private static void playGame()
-        {
-            playAgain();
-            Console.WriteLine("Try to guess the first name of this baseketball player, one character at a time.");
-        }
-
-        /// <summary>
-        /// if user clicks "1" it will call the new game method, allowing them to play a new game.
-        /// if the user clicks 2 it calls exitGame method returning user to the main menu
-        /// </summary>
-        private static void playAgain()
+        public static void playGame()
         {
             Console.Clear();
-            Console.WriteLine("Press 1) To play a new game");
-            Console.WriteLine("Press 2) EXIT");
-            string userAnswer = Console.ReadLine();
-            if (userAnswer == "1")
+            Console.Write(" Try to guess the first name of this baseketball player, one character at a time. Press 'ENTER' to begin.");
+            Console.ReadLine();
+            Random randomName = new Random();
+            string[] allNames = File.ReadAllLines("../../../myFile.txt");
+            int randomNamechosen = randomName.Next(allNames.Length);
+            string nameSelected = allNames[randomNamechosen];
+            string [] placeHolders = new string[nameSelected.Length];
+            bool wonGame = false;
+
+            for (int i = 0; i < placeHolders.Length; i++)
             {
-                playGame();
+                placeHolders[i] = "_";
             }
-            else
+            while (wonGame == false)
             {
-                exitGame();
+                
+                string userInput = Console.ReadLine();
+
+                Console.WriteLine($"You guessed '{userInput}'");
+               
+                for (int i = 0; i < placeHolders.Length; i++)
+                {
+                   // info regarding comparing strings from: https://docs.microsoft.com/en-us/dotnet/csharp/how-to/compare-strings
+
+                    bool result = placeHolders[i].Equals(userInput);
+                    if (result)
+                    {
+                        placeHolders[i] = userInput;
+                    }
+                }
+
+                if (!nameSelected.Contains(userInput))
+                {
+                    Console.WriteLine($"Sorry this player does NOT have a '{userInput}' in their first name");
+                }
+
+
+
+                if (nameSelected.Contains(userInput))
+                {
+                    Console.WriteLine($"This player does have a '{userInput}' in their name");
+
+                    for (int i = 0; i < nameSelected.Length; i++)
+                    {
+                        if (nameSelected[i].ToString() == userInput)
+                        {
+                            placeHolders[i] = userInput;
+                        }
+                    }
+                }
+
+
+
+                foreach (string letter in placeHolders)
+                {
+                    Console.WriteLine(letter);
+                }
+
+               
+
+                if (!placeHolders.Contains("_"))
+            {
+                wonGame = true;
+                Console.WriteLine("\nCongratulations you guessed the correct player!");
+                Console.WriteLine("Press 1 to play another game");
+                Console.WriteLine("Press 'ENTER' to return to the main menu");
+                string userResponse2 = Console.ReadLine();
+                    if (userResponse2 == "1")
+                    {
+                        playGame();
+                    }
+                    else 
+                    {
+                        exitGame();
+                    }
+                   
             }
+
+            }
+
         }
+    
+
+
         /// <summary>
         /// method returns user to main menu screen
         /// </summary>
-        private static void exitGame()
+        public static void exitGame()
         {
 
-         MainMenu();
+         UserInterface();
 
         }
 
@@ -101,14 +167,12 @@ namespace Lab03SystemsIO
         /// <summary>
         /// allows user to view all the words in the file. User can press ENTER and it will automatically return them to the main menu.
         /// </summary>
-        private static void viewNames(string path)
+        public static void viewNames(string path)
         {
             Console.Clear();
             string allWords = File.ReadAllText(path);
             Console.WriteLine("List of of players: \n\n" + allWords + "\n\nPress'ENTER'to return to Main Menu");
             string userInput = Console.ReadLine();
-
-
         }
 
 
@@ -117,25 +181,25 @@ namespace Lab03SystemsIO
         /// calling in the remove method so I created another view names method.
         /// </summary>
         /// <param name="path"></param>
-        private static void viewNames2(string path)
+        public static void viewNames2(string path)
         {
             Console.Clear();
             string allWords = File.ReadAllText(path);
             Console.WriteLine("List of of players: \n\n" + allWords + "\n");
-
         }
 
         /// <summary>
         /// allows user to add their own words to the file/ game. That new word will now be part of the game.
         /// I also call the viewWords method so that way the user is able to verifiy that the word they added is actually on the list.
         /// </summary>
-        private static void addName(string path)
+        public static void addName(string path)
         {
             Console.Clear();
             Console.WriteLine(" Type the first name of the basketball player you would like to add.");
-            string userInput = "\n" + Console.ReadLine() + " (name added by user)";
-            File.AppendAllText(path, userInput);
-            Console.WriteLine($"Your input was sucessfully added to the list. Press 'ENTER' to return to the main menu.");
+            string userInput = "\n" + Console.ReadLine();
+            string[] namesAdded = new string[] { userInput };
+            File.AppendAllLines(path, namesAdded);
+            Console.WriteLine($" {userInput} was sucessfully added to the list. Press 'ENTER' to return to the main menu.");
             Console.ReadLine();
         }
 
@@ -144,11 +208,20 @@ namespace Lab03SystemsIO
         /// this method first shows the user the list again then, allows the user to remove a word from the list.
         /// by calling the viewNames2 method this allows the user to not have to remember if the word they want to remove is in the list or not.
         /// </summary>
-        private static void removeName()
+        public static void removeName(string path, string removedName)
         {
+            string[] names = File.ReadAllLines("../../../myFile.txt");
+
+
+
+
+            {
+
+            }
+
             viewNames2("../../../myFile.txt");
-            Console.WriteLine("Which name would you like to remove?");
-            string userInput = Console.ReadLine();
+          
+           
 
         }
 
