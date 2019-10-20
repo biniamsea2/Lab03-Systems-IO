@@ -12,8 +12,7 @@ Each round will randomly select a basketball player from the list. It is the use
 at a time. As the user guesses the name the application will display all their guesses. If the user guesses a letter correctly it will replace the placeholder
 with that letter. However, if the user doesn't guess correctly the placeholder will remain unchanged and the user will be notified that their guess was incorrect.
 
-## Program Specifications  
-# Methods being used:  
+## Methods being used:  
 
 # Main Method  
 This will be the first method that runs in the program. Consider calling the UserInterface() method from this method.  
