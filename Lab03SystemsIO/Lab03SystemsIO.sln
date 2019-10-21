@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lab03SystemsIO", "Lab03Syst
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7FAF8DB5-18B7-42F7-9F04-5BB26AD3BA06}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTestProject1", "XUnitTestProject1\XUnitTestProject1.csproj", "{70ADA6CC-20D3-4A48-B8D1-7F018776DE9E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{5108B971-FB6C-4FA2-BB6C-85D02B6F4133}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5108B971-FB6C-4FA2-BB6C-85D02B6F4133}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5108B971-FB6C-4FA2-BB6C-85D02B6F4133}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70ADA6CC-20D3-4A48-B8D1-7F018776DE9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70ADA6CC-20D3-4A48-B8D1-7F018776DE9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70ADA6CC-20D3-4A48-B8D1-7F018776DE9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70ADA6CC-20D3-4A48-B8D1-7F018776DE9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

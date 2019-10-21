@@ -6,7 +6,7 @@ namespace Lab03SystemsIO
 {
     public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             bool displayMenu = true;
             while (displayMenu)
@@ -29,16 +29,23 @@ namespace Lab03SystemsIO
             if (userInput == "1")
             {
                 playGame();
+
                 return true;
             }
             else if (userInput == "2")
             {
-                viewNames("../../../myFile.txt");
+                string allWords = File.ReadAllText("../../../myFile.txt");
+                Console.WriteLine("List of of players: \n\n" + allWords + "\n\nPress'ENTER'to return to Main Menu");
+                string userInput3 = Console.ReadLine();
+                viewNames("../../../myFile.txt", userInput3);
                 return true;
             }
             else if (userInput == "3")
             {
-                addName("../../../myFile.txt");
+                Console.Clear();
+                Console.WriteLine(" Type the first name of the basketball player you would like to add.");
+                string userAnswer = "\n" + Console.ReadLine();
+                addName("../../../myFile.txt", userAnswer);
                 return true;
             }
             else if (userInput == "4")
@@ -75,7 +82,7 @@ namespace Lab03SystemsIO
             string[] allNames = File.ReadAllLines("../../../myFile.txt");
             int randomNamechosen = randomName.Next(allNames.Length);
             string nameSelected = allNames[randomNamechosen];
-            string [] placeHolders = new string[nameSelected.Length];
+            string[] placeHolders = new string[nameSelected.Length];
             bool wonGame = false;
 
             for (int i = 0; i < placeHolders.Length; i++)
@@ -84,14 +91,14 @@ namespace Lab03SystemsIO
             }
             while (wonGame == false)
             {
-                
+
                 string userInput = Console.ReadLine();
 
                 Console.WriteLine($"You guessed '{userInput}'");
-               
+
                 for (int i = 0; i < placeHolders.Length; i++)
                 {
-                   // info regarding comparing strings from: https://docs.microsoft.com/en-us/dotnet/csharp/how-to/compare-strings
+                    // info regarding comparing strings from: https://docs.microsoft.com/en-us/dotnet/csharp/how-to/compare-strings
 
                     bool result = placeHolders[i].Equals(userInput);
                     if (result)
@@ -127,30 +134,29 @@ namespace Lab03SystemsIO
                     Console.WriteLine(letter);
                 }
 
-               
+
 
                 if (!placeHolders.Contains("_"))
-            {
-                wonGame = true;
-                Console.WriteLine("\nCongratulations you guessed the correct player!");
-                Console.WriteLine("Press 1 to play another game");
-                Console.WriteLine("Press 'ENTER' to return to the main menu");
-                string userResponse2 = Console.ReadLine();
+                {
+                    wonGame = true;
+                    Console.WriteLine("\nCongratulations you guessed the correct player!");
+                    Console.WriteLine("Press 1 to play another game");
+                    Console.WriteLine("Press 'ENTER' to return to the main menu");
+                    string userResponse2 = Console.ReadLine();
                     if (userResponse2 == "1")
                     {
                         playGame();
                     }
-                    else 
+                    else
                     {
                         exitGame();
                     }
-                   
-            }
+
+                }
 
             }
 
         }
-    
 
 
         /// <summary>
@@ -167,12 +173,10 @@ namespace Lab03SystemsIO
         /// <summary>
         /// allows user to view all the words in the file. User can press ENTER and it will automatically return them to the main menu.
         /// </summary>
-        public static void viewNames(string path)
+        public static string viewNames(string path, string userInput3)
         {
-            Console.Clear();
-            string allWords = File.ReadAllText(path);
-            Console.WriteLine("List of of players: \n\n" + allWords + "\n\nPress'ENTER'to return to Main Menu");
-            string userInput = Console.ReadLine();
+            string allWords = File.ReadAllText("../../../myFile.txt");
+            return userInput3;
         }
 
 
@@ -192,15 +196,14 @@ namespace Lab03SystemsIO
         /// allows user to add their own words to the file/ game. That new word will now be part of the game.
         /// I also call the viewWords method so that way the user is able to verifiy that the word they added is actually on the list.
         /// </summary>
-        public static void addName(string path)
+        public static string addName(string path, string userAnswer)
         {
-            Console.Clear();
-            Console.WriteLine(" Type the first name of the basketball player you would like to add.");
-            string userInput = "\n" + Console.ReadLine();
-            string[] namesAdded = new string[] { userInput };
+           
+            string[] namesAdded = new string[] { userAnswer };
             File.AppendAllLines(path, namesAdded);
-            Console.WriteLine($" {userInput} was sucessfully added to the list. Press 'ENTER' to return to the main menu.");
+            Console.WriteLine($" {userAnswer} was sucessfully added to the list. Press 'ENTER' to return to the main menu.");
             Console.ReadLine();
+            return userAnswer;
         }
 
 
@@ -210,21 +213,10 @@ namespace Lab03SystemsIO
         /// </summary>
         public static void removeName(string path, string removedName)
         {
-            string[] names = File.ReadAllLines("../../../myFile.txt");
 
-
-
-
-            {
-
-            }
-
-            viewNames2("../../../myFile.txt");
-          
-           
 
         }
-
+        
 
 
        

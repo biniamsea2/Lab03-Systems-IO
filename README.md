@@ -12,23 +12,23 @@ Each round will randomly select a basketball player from the list. It is the use
 at a time. As the user guesses the name the application will display all their guesses. If the user guesses a letter correctly it will replace the placeholder
 with that letter. However, if the user doesn't guess correctly the placeholder will remain unchanged and the user will be notified that their guess was incorrect.
 
-## Program Specifications  
-Some methods that you should consider creating with your application, at minimum:
+## Methods being used:  
 
-Main Method
-This will be the first method that runs in the program. Consider calling the UserInterface() method from this method.
-UserInterface
-Asks the user what action they should take
-ViewWords
-Reads the words in from the external file and outputs them to the console
-RemoveWords
-Gives the user the ability to remove one of the words in the list
-AddWord
-Add a new word to the list
-ExitGame
-End the game
-StartGame*
-Actual game logic of guessing a letter of the mystery word 
+# Main Method  
+This will be the first method that runs in the program. Consider calling the UserInterface() method from this method.  
+# UserInterface  
+Asks the user what action they should take  
+# playGame
+Starts the game  
+# viewNames  
+Reads the names in from the external file and outputs them to the console  
+# removeName  
+Gives the user the ability to remove one of the names in the list  
+# addName  
+Adds a new name to the list  
+# exitGame  
+Ends the game  
+
 
 ---
 
@@ -53,14 +53,15 @@ Then select and open ```Lab03SystemIO.sln```
 ### Visuals
 
 #### Application Start
-![Image 1](https://github.com/biniamsea2/Lab02BankApp/blob/master/screenshots/Screenshot%20(24).png)
-#### Deposit
-![Image 1](https://github.com/biniamsea2/Lab02BankApp/blob/master/screenshots/Screenshot%20(25).png)
-#### Withdraw
-![Image 1](https://github.com/biniamsea2/Lab02BankApp/blob/master/screenshots/Screenshot%20(26).png)
-![Image 1](https://github.com/biniamsea2/Lab02BankApp/blob/master/screenshots/Screenshot%20(26).png)
-![Image 1](https://github.com/biniamsea2/Lab02BankApp/blob/master/screenshots/Screenshot%20(26).png)
-
+![Image 1](https://github.com/biniamsea2/Lab03-Systems-IO/blob/master/Screenshots/mainMenu.png)
+#### Game in Action
+![Image 1](https://github.com/biniamsea2/Lab03-Systems-IO/blob/master/Screenshots/playing%20game.png)
+#### Won Game
+![Image 1](https://github.com/biniamsea2/Lab03-Systems-IO/blob/master/Screenshots/game%20won.png)
+#### View Names in the List
+![Image 1](https://github.com/biniamsea2/Lab03-Systems-IO/blob/master/Screenshots/view%20list%20of%20names.png)
+#### Add Name to the List
+![Image 1](https://github.com/biniamsea2/Lab03-Systems-IO/blob/master/Screenshots/add%20to%20list.png)
 ---
 
 ### Change Log
