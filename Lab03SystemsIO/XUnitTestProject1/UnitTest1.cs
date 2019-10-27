@@ -21,6 +21,14 @@ namespace XUnitTestProject1
             Assert.Equal(test, viewNames("../../../myFile.txt", test));
         }
 
-      
+
+        [Fact]
+        public void TestingNamesAdded()
+        {
+            string test = "test";
+            Assert.Equal(test, addName("../../../myFile.txt", test));
+        }
+
+
     }
 }

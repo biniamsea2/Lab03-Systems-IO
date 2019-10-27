@@ -55,16 +55,10 @@ namespace Lab03SystemsIO
                 removeName("../../../myFile.txt", removedName);
                 return true;
             }
-            else if (userInput == "5")
-            {
-                return false;
-            }
             else
             {
                 return false;
             }
-
-
         }
 
 
@@ -76,8 +70,7 @@ namespace Lab03SystemsIO
         public static void playGame()
         {
             Console.Clear();
-            Console.Write(" Try to guess the first name of this baseketball player, one character at a time. Press 'ENTER' to begin.");
-            Console.ReadLine();
+            Console.WriteLine(" Try to guess the first name of this baseketball player, one character at a time. Type a letter then press 'ENTER.'");
             Random randomName = new Random();
             string[] allNames = File.ReadAllLines("../../../myFile.txt");
             int randomNamechosen = randomName.Next(allNames.Length);
@@ -99,7 +92,6 @@ namespace Lab03SystemsIO
                 for (int i = 0; i < placeHolders.Length; i++)
                 {
                     // info regarding comparing strings from: https://docs.microsoft.com/en-us/dotnet/csharp/how-to/compare-strings
-
                     bool result = placeHolders[i].Equals(userInput);
                     if (result)
                     {
@@ -109,14 +101,14 @@ namespace Lab03SystemsIO
 
                 if (!nameSelected.Contains(userInput))
                 {
-                    Console.WriteLine($"Sorry this player does NOT have a '{userInput}' in their first name");
+                    Console.WriteLine($"Sorry this player does NOT have a '{userInput}' in their first name, please guess again.");
                 }
 
 
 
                 if (nameSelected.Contains(userInput))
                 {
-                    Console.WriteLine($"This player does have a '{userInput}' in their name");
+                    Console.WriteLine($"This player does have a '{userInput}' in their first name");
 
                     for (int i = 0; i < nameSelected.Length; i++)
                     {
@@ -131,6 +123,7 @@ namespace Lab03SystemsIO
 
                 foreach (string letter in placeHolders)
                 {
+
                     Console.WriteLine(letter);
                 }
 
@@ -155,7 +148,6 @@ namespace Lab03SystemsIO
                 }
 
             }
-
         }
 
 
@@ -164,9 +156,7 @@ namespace Lab03SystemsIO
         /// </summary>
         public static void exitGame()
         {
-
-         UserInterface();
-
+            UserInterface();
         }
 
 
@@ -198,7 +188,7 @@ namespace Lab03SystemsIO
         /// </summary>
         public static string addName(string path, string userAnswer)
         {
-           
+
             string[] namesAdded = new string[] { userAnswer };
             File.AppendAllLines(path, namesAdded);
             Console.WriteLine($" {userAnswer} was sucessfully added to the list. Press 'ENTER' to return to the main menu.");
@@ -213,12 +203,28 @@ namespace Lab03SystemsIO
         /// </summary>
         public static void removeName(string path, string removedName)
         {
-
+            string[] allNames = File.ReadAllLines("../../../myFile.txt");
+            string[] temp = new string[allNames.Length - 1];
+            int index = Array.IndexOf(allNames, removedName);
+            for (int i = 0; i < temp.Length; i++)
+            {
+                if (i < index)
+                {
+                    temp[i] = allNames[i];
+                }
+                else if (i >= index)
+                {
+                    temp[i] = allNames[i + 1];
+                }
+                File.WriteAllLines("../../../myFile.txt", temp);
+            }
+            Console.WriteLine($"{removedName} was removed from the list. Please press 'ENTER' to return to the main menu");
+            string userInput = Console.ReadLine();
+            if (userInput == "1")
+            {
+                UserInterface();
+            }
 
         }
-        
-
-
-       
     }
 }
